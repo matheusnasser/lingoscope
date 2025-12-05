@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Logo } from "../../components/common/Logo";
 import { RootStackParamList } from "../../navigation/AppNavigator";
 import { authService } from "../../services/auth";
 import { signInWithOAuthProvider } from "../../services/auth/oauthHelper";
@@ -88,9 +89,7 @@ export default function LoginScreen() {
         <View className="flex-1 items-center justify-center px-6 py-12">
           {/* Logo/App Name */}
           <View className="mb-12 items-center">
-            <Text className="text-5xl font-bold text-deepTeal mb-2">
-              Lingoscope
-            </Text>
+            <Logo size={80} className="mb-4" variant="full" />
             <Text className="text-lg text-coolGray">
               Explore languages, discover cultures
             </Text>

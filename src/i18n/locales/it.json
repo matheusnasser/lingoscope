@@ -1,0 +1,123 @@
+{
+  "common": {
+    "continue": "Continua",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "back": "Indietro",
+    "next": "Avanti",
+    "done": "Fatto",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo"
+  },
+  "auth": {
+    "login": "Accedi",
+    "signup": "Registrati",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Conferma Password",
+    "username": "Nome Utente",
+    "forgotPassword": "Password dimenticata?",
+    "alreadyHaveAccount": "Hai già un account?",
+    "dontHaveAccount": "Non hai un account?",
+    "signInWithGoogle": "Accedi con Google",
+    "signUpWithGoogle": "Registrati con Google",
+    "signInWithApple": "Accedi con Apple",
+    "signUpWithApple": "Registrati con Apple"
+  },
+  "onboarding": {
+    "welcome": "Benvenuto su Lingoscope!",
+    "chooseUsername": "Iniziamo scegliendo il tuo nome utente",
+    "usernamePlaceholder": "Scegli un nome utente",
+    "usernameHint": "Questo sarà il tuo nome visualizzato. Potrai cambiarlo in seguito.",
+    "nativeLanguage": "Qual è la tua lingua madre?",
+    "targetLanguage": "Che lingua vuoi imparare?",
+    "proficiencyLevel": "Qual è il tuo livello?",
+    "proficiencyDescription": "Aiutaci a personalizzare la tua esperienza di apprendimento",
+    "goals": "Quali sono i tuoi obiettivi?",
+    "goalsDescription": "Seleziona tutti quelli che si applicano (opzionale)",
+    "interests": "Cosa ti interessa?",
+    "interestsDescription": "Seleziona gli argomenti su cui vorresti imparare (opzionale)",
+    "completeSetup": "Completa la Configurazione"
+  },
+  "home": {
+    "lingodex": "Lingodex",
+    "itemsCollected": "{{count}} {{count, plural, one {elemento} other {elementi}}} raccolti",
+    "feed": "Feed",
+    "challenges": "Sfide",
+    "camera": "Fotocamera",
+    "profile": "Profilo"
+  },
+  "challenges": {
+    "title": "Sfida Foto di {{count}} Giorni",
+    "completed": "{{completed}} di {{total}} completate",
+    "upgradePrompt": "Aggiorna per sbloccare 10 sfide giornaliere →",
+    "day": "Giorno {{number}}",
+    "capturePhoto": "Scatta Foto",
+    "completed": "Completato ✓"
+  },
+  "analysis": {
+    "title": "Risultato dell'Analisi",
+    "subtitle": "Ecco cosa abbiamo trovato nella tua immagine",
+    "detectedObject": "Oggetto Rilevato",
+    "examplePhrases": "Frasi di Esempio",
+    "unlockExamplePhrases": "Sblocca Frasi di Esempio",
+    "unlockDescription": "Passa a Premium per vedere frasi di esempio e accelerare il tuo apprendimento!",
+    "viewPlans": "Visualizza Piani",
+    "captureAnother": "Scatta un'Altra Immagine"
+  },
+  "profile": {
+    "title": "Profilo",
+    "subscription": "Abbonamento",
+    "free": "Gratuito",
+    "premium": "Premium",
+    "upgradeToPremium": "Passa a Premium",
+    "languagePreferences": "Preferenze Lingua",
+    "nativeLanguage": "Lingua Madre",
+    "learning": "Apprendimento",
+    "posts": "Post",
+    "settings": "Impostazioni",
+    "editProfile": "Modifica Profilo",
+    "helpSupport": "Aiuto e Supporto",
+    "signOut": "Esci"
+  },
+  "pricing": {
+    "title": "Scegli il Tuo Piano",
+    "subtitle": "Sblocca più funzionalità per accelerare il tuo apprendimento",
+    "monthly": "Mensile",
+    "yearly": "Annuale",
+    "savePercent": "Risparmia 17%",
+    "free": "Gratuito",
+    "freeDescription": "Perfetto per iniziare",
+    "premium": "Premium",
+    "premiumDescription": "Sblocca tutto il tuo potenziale di apprendimento",
+    "perMonth": "/mese",
+    "perYear": "/anno",
+    "currentPlan": "Piano Attuale",
+    "continueWithFree": "Continua con Gratuito",
+    "subscribeToPremium": "Abbonati a Premium",
+    "features": {
+      "dailyChallenges": "{{count}} sfide giornaliere",
+      "unlimitedCaptures": "Scatti illimitati",
+      "examplePhrases": "Frasi di esempio",
+      "prioritySupport": "Supporto prioritario"
+    }
+  },
+  "search": {
+    "placeholder": "Cerca nella tua collezione...",
+    "noResults": "Nessun risultato trovato"
+  },
+  "empty": {
+    "noPosts": "Nessun post ancora.\nScatta la tua prima immagine per iniziare!",
+    "noItems": "Nessun elemento catturato ancora.\nScatta la tua prima immagine per iniziare la tua collezione!",
+    "loadingCollection": "Caricamento collezione...",
+    "loadingChallenges": "Caricamento sfide..."
+  }
+}
+
+
+
+
+
+
+

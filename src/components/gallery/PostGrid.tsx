@@ -32,6 +32,7 @@ export default function PostGrid({ posts }: PostGridProps) {
         detectedObjectTargetPinyin: post.detected_object_target_pinyin || post.pinyin,
         contextSentence: post.context_sentence,
         contextSentencePinyin: post.context_sentence_pinyin,
+        contextFoundPhrase: post.context_found_phrase,
         examplePhrases: post.example_phrases,
         storagePath: post.storage_path,
         pinyin: post.pinyin, // Legacy support

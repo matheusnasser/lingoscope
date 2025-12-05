@@ -1,24 +1,69 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity, View } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  AppState,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import DiscoverScreen from "../screens/HomeScreen/DiscoverScreen";
-import ChallengesScreen from "../screens/HomeScreen/ChallengesScreen";
+import { useAuth } from "../context/AuthContext";
 import CameraScreen from "../screens/HomeScreen/CameraScreen";
+import DiscoverScreen from "../screens/HomeScreen/DiscoverScreen";
+import ReviewScreen from "../screens/ReviewScreen/index";
+
+// Wrapper components that redirect to Review if there are due reviews
+function DiscoverScreenWithReviewCheck() {
+  // Review check removed to prevent loop
+  return <DiscoverScreen />;
+}
+
+function CameraScreenWithReviewCheck() {
+  // Review check removed to prevent loop
+  return <CameraScreen />;
+}
 
 export type HomeTabsParamList = {
   Discover: undefined;
-  Challenges: undefined;
   Camera: undefined;
+  Review: undefined;
 };
 
 const Tab = createBottomTabNavigator<HomeTabsParamList>();
 
 export default function HomeTabsNavigator() {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
+  const { session } = useAuth();
+  const [initialRoute, setInitialRoute] =
+    useState<keyof HomeTabsParamList>("Discover");
+
+  useEffect(() => {
+    // Removed aggressive redirection to Review screen
+    setInitialRoute("Discover");
+  }, [session]);
+
+  // Check reviews when app comes to foreground
+  useEffect(() => {
+    const subscription = AppState.addEventListener(
+      "change",
+      async (nextAppState) => {
+        if (nextAppState === "active" && session?.user?.id) {
+          // Removed aggressive redirection to Review screen
+        }
+      }
+    );
+
+    return () => {
+      subscription.remove();
+    };
+  }, [session]);
 
   return (
     <Tab.Navigator
+      initialRouteName={initialRoute}
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -39,27 +84,27 @@ export default function HomeTabsNavigator() {
     >
       <Tab.Screen
         name="Discover"
-        component={DiscoverScreen}
+        component={DiscoverScreenWithReviewCheck}
         options={{
-          tabBarLabel: "Feed",
+          tabBarLabel: t("home.feed"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search" size={size} color={color} />
           ),
         }}
       />
       <Tab.Screen
-        name="Challenges"
-        component={ChallengesScreen}
+        name="Review"
+        component={ReviewScreen}
         options={{
-          tabBarLabel: "Challenges",
+          tabBarLabel: "Review",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="trophy" size={size} color={color} />
+            <Ionicons name="book" size={size} color={color} />
           ),
         }}
       />
       <Tab.Screen
         name="Camera"
-        component={CameraScreen}
+        component={CameraScreenWithReviewCheck}
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ color, size }) => (
@@ -67,7 +112,7 @@ export default function HomeTabsNavigator() {
           ),
           tabBarButton: (props) => (
             <TouchableOpacity
-              {...props}
+              {...(props as TouchableOpacityProps)}
               style={{
                 top: -15,
                 justifyContent: "center",
@@ -100,4 +145,3 @@ export default function HomeTabsNavigator() {
     </Tab.Navigator>
   );
 }
-

@@ -29,8 +29,22 @@ export function AuthNavigator({ children }: AuthNavigatorProps) {
 
     // User is logged in
     if (onboardingCompleted === false) {
-      // Not completed onboarding - navigate to native language screen
-      navigation.navigate("OnboardingNativeLanguage");
+      // Check if username exists, if not go to username screen first
+      const checkUsername = async () => {
+        const { supabase } = await import("../config/supabase");
+        const { data } = await supabase
+          .from("user_profiles")
+          .select("username")
+          .eq("id", session.user.id)
+          .single();
+        
+        if (!data?.username) {
+          navigation.navigate("OnboardingUsername");
+        } else {
+          navigation.navigate("OnboardingNativeLanguage");
+        }
+      };
+      checkUsername();
     } else if (onboardingCompleted === true) {
       // Completed onboarding - navigate to home
       navigation.navigate("Home");

@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Logo } from "../../components/common/Logo";
 import { RootStackParamList } from "../../navigation/AppNavigator";
 import { authService } from "../../services/auth";
 import { signInWithOAuthProvider } from "../../services/auth/oauthHelper";
@@ -19,15 +20,21 @@ type SignUpScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export default function SignUpScreen() {
   const navigation = useNavigation<SignUpScreenNavigationProp>();
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("123456");
+  const [confirmPassword, setConfirmPassword] = useState("123456");
   const [loading, setLoading] = useState(false);
   const [socialLoading, setSocialLoading] = useState<string | null>(null);
 
   const handleSignUp = async () => {
-    if (!email || !password || !confirmPassword) {
+    if (!username || !email || !password || !confirmPassword) {
       Alert.alert("Error", "Please fill in all fields");
+      return;
+    }
+
+    if (username.length < 3) {
+      Alert.alert("Error", "Username must be at least 3 characters");
       return;
     }
 
@@ -53,11 +60,23 @@ export default function SignUpScreen() {
         return;
       }
 
-      if (session) {
-        // Navigation will be handled by AuthNavigator based on onboarding status
+      if (session?.user?.id) {
+        // Save username to profile
+        const { supabase } = await import("../../config/supabase");
+        await supabase.from("user_profiles").upsert(
+          {
+            id: session.user.id,
+            username: username.trim(),
+            subscription_plan: "free",
+          },
+          {
+            onConflict: "id",
+          }
+        );
+
+        // Navigate to onboarding
+        navigation.navigate("Onboarding", { screen: "Username" });
       } else {
-        // If no session but no error, email confirmation might be required
-        // But if email verification is disabled, this shouldn't happen
         Alert.alert(
           "Success!",
           "Account created successfully. Please sign in.",
@@ -111,9 +130,7 @@ export default function SignUpScreen() {
         <View className="flex-1 items-center justify-center px-6 py-12">
           {/* Logo/App Name */}
           <View className="mb-12 items-center">
-            <Text className="text-5xl font-bold text-deepTeal mb-2">
-              Lingoscope
-            </Text>
+            <Logo size={80} className="mb-4" variant="full" />
             <Text className="text-lg text-coolGray">
               Join us and start exploring
             </Text>
@@ -121,6 +138,21 @@ export default function SignUpScreen() {
 
           {/* Sign Up Form */}
           <View className="w-full max-w-sm">
+            <View className="mb-6">
+              <Text className="text-deepTeal text-sm font-semibold mb-2">
+                Username
+              </Text>
+              <TextInput
+                placeholder="Choose a username"
+                placeholderTextColor="#9BA4B5"
+                value={username}
+                onChangeText={setUsername}
+                autoCapitalize="none"
+                autoComplete="username"
+                className="bg-white border border-coolGray rounded-xl px-4 py-4 text-base text-nightshade"
+              />
+            </View>
+
             <View className="mb-6">
               <Text className="text-deepTeal text-sm font-semibold mb-2">
                 Email
@@ -245,4 +277,3 @@ export default function SignUpScreen() {
     </KeyboardAvoidingView>
   );
 }
-

@@ -10,6 +10,7 @@ import { apiService } from "../../services/api";
 import { useAuth } from "../../context/AuthContext";
 import { userService } from "../../services/user";
 import { RootStackParamList } from "../../navigation/AppNavigator";
+import { AnalyzingScreen } from "../AnalyzingScreen";
 
 interface SelectionBox {
   x: number;
@@ -83,6 +84,10 @@ export default function CameraScreen() {
       setIsCameraReady(false);
     }
   }, [isFocused]);
+
+  if (isAnalyzing) {
+    return <AnalyzingScreen />;
+  }
 
   if (!cameraPermission) {
     return (
@@ -170,17 +175,6 @@ export default function CameraScreen() {
         </View>
       ) : (
         <View className="flex-1 items-center justify-center px-6">
-          {isAnalyzing && (
-            <View className="absolute inset-0 bg-black/50 rounded-xl items-center justify-center z-10">
-              <View className="bg-white rounded-xl p-6 items-center">
-                <ActivityIndicator size="large" color="#0F4C5C" />
-                <Text className="text-nightshade font-semibold mt-4">
-                  Analyzing image...
-                </Text>
-              </View>
-            </View>
-          )}
-          
           {/* Image selector for photos */}
           <ImageSelector
             imageUri={image!}
@@ -218,6 +212,19 @@ export default function CameraScreen() {
                 if (result.success && result.data) {
                   const data = result.data;
                   
+                  // Log API response for debugging
+                  console.log("=== API ANALYSIS RESPONSE ===");
+                  console.log("Full API response:", JSON.stringify(data, null, 2));
+                  console.log("detectedObjectBase:", data.detectedObjectBase);
+                  console.log("detectedObjectTarget:", data.detectedObjectTarget);
+                  console.log("detectedObjectTargetPinyin:", data.detectedObjectTargetPinyin);
+                  console.log("contextSentence:", data.contextSentence);
+                  console.log("contextSentencePinyin:", data.contextSentencePinyin);
+                  console.log("contextFoundPhrase:", data.contextFoundPhrase);
+                  console.log("examplePhrases:", JSON.stringify(data.examplePhrases, null, 2));
+                  console.log("storagePath:", data.storagePath);
+                  console.log("============================");
+                  
                   // Navigate to results screen
                   navigation.navigate("AnalysisResult", {
                     imageUri: image,
@@ -226,6 +233,7 @@ export default function CameraScreen() {
                     detectedObjectTargetPinyin: data.detectedObjectTargetPinyin,
                     contextSentence: data.contextSentence,
                     contextSentencePinyin: data.contextSentencePinyin,
+                    contextFoundPhrase: data.contextFoundPhrase,
                     examplePhrases: data.examplePhrases,
                     storagePath: data.storagePath,
                     pinyin: data.pinyin, // Legacy support

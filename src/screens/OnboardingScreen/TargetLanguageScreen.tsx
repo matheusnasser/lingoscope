@@ -13,7 +13,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "../../navigation/AppNavigator";
 import { useAuth } from "../../context/AuthContext";
-import { userService } from "../../services/user";
+import { supabase } from "../../config/supabase";
 
 type TargetLanguageScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 type RouteParams = {
@@ -62,22 +62,23 @@ export default function TargetLanguageScreen() {
 
     setLoading(true);
     try {
-      const { profile, error } = await userService.completeOnboarding(
-        session.user.id,
-        {
-          native_language: nativeLanguage,
-          target_languages: [selectedLanguage], // Array format
-        }
-      );
+      // Save target language
+      const { error } = await supabase
+        .from("user_profiles")
+        .update({
+          target_languages: [selectedLanguage],
+        })
+        .eq("id", session.user.id);
 
       if (error) {
         Alert.alert("Error", "Failed to save your preferences. Please try again.");
         return;
       }
 
-      if (profile) {
-        navigation.navigate("Home");
-      }
+      navigation.navigate("OnboardingProficiency", {
+        nativeLanguage,
+        targetLanguage: selectedLanguage,
+      } as any);
     } catch (error) {
       Alert.alert("Error", "An unexpected error occurred. Please try again.");
     } finally {

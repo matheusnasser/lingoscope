@@ -15,6 +15,9 @@ export interface UserProfile {
 export interface OnboardingData {
   native_language: string;
   target_languages: string[];
+  proficiency_level?: string;
+  learning_goals?: string[];
+  interests?: string[];
 }
 
 class UserService {
@@ -70,6 +73,9 @@ class UserService {
           id: userId,
           native_language: onboardingData.native_language,
           target_languages: onboardingData.target_languages,
+          proficiency_level: onboardingData.proficiency_level || null,
+          learning_goals: onboardingData.learning_goals || null,
+          interests: onboardingData.interests || null,
           onboarding_completed: true,
         }, {
           onConflict: 'id'

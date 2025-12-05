@@ -1,10 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
   KeyboardAvoidingView,
+  Linking,
   Platform,
   ScrollView,
   Text,
@@ -20,6 +22,10 @@ import {
   storageService,
 } from "../../services/storage/storageService";
 import { UserProfile, userService } from "../../services/user";
+import { paymentService } from "../../services/payment/paymentService";
+import { RootStackParamList } from "../../navigation/AppNavigator";
+
+type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const LANGUAGES = [
   { code: "en", name: "English" },
@@ -53,6 +59,7 @@ const LANGUAGE_NAMES: Record<string, string> = {
 
 export default function ProfileScreen() {
   const { signOut, session } = useAuth();
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [posts, setPosts] = useState<CapturedImage[]>([]);
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
@@ -367,6 +374,52 @@ export default function ProfileScreen() {
           ) : (
             <PostGrid posts={posts} />
           )}
+        </View>
+
+        {/* Subscription Info */}
+        <View className="mb-6">
+          <View className="bg-white rounded-xl p-4 mb-3 shadow-sm border border-coolGray/20">
+            <View className="flex-row items-center justify-between mb-2">
+              <Text className="text-nightshade font-semibold">Subscription</Text>
+              <Text className={`font-semibold ${
+                (profile as any)?.subscription_plan === "premium" 
+                  ? "text-vibrantCoral" 
+                  : "text-coolGray"
+              }`}>
+                {(profile as any)?.subscription_plan === "premium" ? "Premium" : "Free"}
+              </Text>
+            </View>
+            {(profile as any)?.subscription_plan === "free" ? (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Pricing")}
+                className="bg-deepTeal rounded-lg px-4 py-2 mt-2"
+              >
+                <Text className="text-white text-center font-semibold">
+                  Upgrade to Premium
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={async () => {
+                  if (!session?.user?.id) return;
+                  const { url, error } = await paymentService.createBillingPortalSession(session.user.id);
+                  if (error || !url) {
+                    Alert.alert("Error", "Failed to open billing portal");
+                    return;
+                  }
+                  const canOpen = await Linking.canOpenURL(url);
+                  if (canOpen) {
+                    await Linking.openURL(url);
+                  }
+                }}
+                className="bg-deepTeal rounded-lg px-4 py-2 mt-2"
+              >
+                <Text className="text-white text-center font-semibold">
+                  Manage Subscription
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
 
         {/* Settings Options */}

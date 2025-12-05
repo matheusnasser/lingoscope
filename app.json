@@ -17,8 +17,10 @@
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "Lingoscope needs access to your camera to capture images and videos for language learning.",
-        "NSMicrophoneUsageDescription": "Lingoscope needs access to your microphone to record videos for language learning."
-      }
+        "NSMicrophoneUsageDescription": "Lingoscope needs access to your microphone to record videos for language learning.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.matheusnasser12.lingoscope"
     },
     "android": {
       "adaptiveIcon": {
@@ -36,6 +38,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c8597f0e-8d75-4072-9072-f05bc7a0db63"
+      }
+    },
+    "owner": "matheusnasser12",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c8597f0e-8d75-4072-9072-f05bc7a0db63"
     }
   }
 }

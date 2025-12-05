@@ -37,6 +37,7 @@ export default function ImageGallery({ images, onImagePress }: ImageGalleryProps
           detectedObjectTargetPinyin: image.detected_object_target_pinyin || image.pinyin,
           contextSentence: image.context_sentence,
           contextSentencePinyin: image.context_sentence_pinyin,
+          contextFoundPhrase: image.context_found_phrase,
           examplePhrases: image.example_phrases,
           storagePath: image.storage_path,
           pinyin: image.pinyin, // Legacy support

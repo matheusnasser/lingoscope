@@ -30,6 +30,7 @@ export default function PokedexCard({ item, index }: PokedexCardProps) {
           item.detected_object_target_pinyin || item.pinyin,
         contextSentence: item.context_sentence,
         contextSentencePinyin: item.context_sentence_pinyin,
+        contextFoundPhrase: item.context_found_phrase,
         examplePhrases: item.example_phrases,
         storagePath: item.storage_path,
         pinyin: item.pinyin,
@@ -105,6 +106,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderWidth: 2,
     borderColor: "#E5E5E5",
+    width: "100%",
   },
   imageContainer: {
     width: "100%",

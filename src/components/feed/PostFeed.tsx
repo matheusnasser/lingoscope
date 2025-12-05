@@ -29,6 +29,7 @@ export default function PostFeed({ posts }: PostFeedProps) {
           post.detected_object_target_pinyin || post.pinyin,
         contextSentence: post.context_sentence,
         contextSentencePinyin: post.context_sentence_pinyin,
+        contextFoundPhrase: post.context_found_phrase,
         examplePhrases: post.example_phrases,
         storagePath: post.storage_path,
         pinyin: post.pinyin, // Legacy support
@@ -53,7 +54,7 @@ export default function PostFeed({ posts }: PostFeedProps) {
       {/* Post Info */}
       <View className="p-4 pt-3">
         {item.detected_object_target && (
-          <View className="mb-1">
+          <View className="mb-2">
             <Text className="text-nightshade font-bold text-base">
               {item.detected_object_target}
             </Text>
@@ -64,13 +65,23 @@ export default function PostFeed({ posts }: PostFeedProps) {
                   {item.detected_object_target_pinyin || item.pinyin}
                 </Text>
               )}
+            {item.detected_object_base && (
+              <Text className="text-coolGray text-sm mt-1">
+                {item.detected_object_base}
+              </Text>
+            )}
           </View>
         )}
         {item.context_sentence && (
-          <View>
-            <Text className="text-coolGray text-sm leading-5">
+          <View className="mt-2">
+            <Text className="text-nightshade text-sm leading-5">
               {item.context_sentence}
             </Text>
+            {item.detected_object_base && (
+              <Text className="text-coolGray text-xs mt-1">
+                ({item.detected_object_base})
+              </Text>
+            )}
             {item.context_sentence_pinyin &&
               containsChinese(item.context_sentence) && (
                 <Text className="text-coolGray text-xs italic mt-1">

@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Text, View } from "react-native";
 import PokedexGrid from "../../components/pokedex/PokedexGrid";
 import SearchBar from "../../components/pokedex/SearchBar";
@@ -12,6 +13,7 @@ import {
 
 export default function DiscoverScreen() {
   const { session } = useAuth();
+  const { t } = useTranslation();
   const [posts, setPosts] = React.useState<CapturedImage[]>([]);
   const [filteredPosts, setFilteredPosts] = React.useState<CapturedImage[]>([]);
   const [isLoadingPosts, setIsLoadingPosts] = React.useState(false);
@@ -33,7 +35,6 @@ export default function DiscoverScreen() {
     }, [session])
   );
 
-  // Filter posts based on search query
   React.useEffect(() => {
     if (!searchQuery.trim()) {
       setFilteredPosts(posts);
@@ -64,10 +65,7 @@ export default function DiscoverScreen() {
         <View className="flex-row items-center justify-between mb-4">
           <View>
             <Text className="text-3xl font-bold text-deepTeal mb-1">
-              Lingodex
-            </Text>
-            <Text className="text-coolGray text-sm">
-              {posts.length} {posts.length === 1 ? "item" : "items"} collected
+              {t("home.lingodex")}
             </Text>
           </View>
           <View className="w-12 h-12 rounded-full bg-deepTeal/10 items-center justify-center">
@@ -80,6 +78,7 @@ export default function DiscoverScreen() {
           value={searchQuery}
           onChangeText={setSearchQuery}
           onClear={() => setSearchQuery("")}
+          placeholder={t("search.placeholder")}
         />
       </View>
 
@@ -89,7 +88,7 @@ export default function DiscoverScreen() {
           <View className="py-12 items-center">
             <ActivityIndicator size="small" color="#0F4C5C" />
             <Text className="text-coolGray text-sm mt-2">
-              Loading collection...
+              {t("empty.loadingCollection")}
             </Text>
           </View>
         ) : (

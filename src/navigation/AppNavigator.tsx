@@ -5,6 +5,11 @@ import ProfileScreen from "../screens/HomeScreen/ProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
 import NativeLanguageScreen from "../screens/OnboardingScreen/NativeLanguageScreen";
 import TargetLanguageScreen from "../screens/OnboardingScreen/TargetLanguageScreen";
+import UsernameScreen from "../screens/OnboardingScreen/UsernameScreen";
+import ProficiencyScreen from "../screens/OnboardingScreen/ProficiencyScreen";
+import GoalsScreen from "../screens/OnboardingScreen/GoalsScreen";
+import InterestsScreen from "../screens/OnboardingScreen/InterestsScreen";
+import PricingScreen from "../screens/PricingScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 
 import { NavigatorScreenParams } from "@react-navigation/native";
@@ -13,10 +18,16 @@ import { HomeTabsParamList } from "./HomeTabsNavigator";
 export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
+  Onboarding: { screen: "Username" | "NativeLanguage" | "TargetLanguage" | "Proficiency" | "Goals" | "Interests" } | undefined;
+  OnboardingUsername: undefined;
   OnboardingNativeLanguage: undefined;
   OnboardingTargetLanguage: { nativeLanguage: string };
+  OnboardingProficiency: { nativeLanguage: string; targetLanguage: string };
+  OnboardingGoals: { nativeLanguage: string; targetLanguage: string; proficiencyLevel: string };
+  OnboardingInterests: { nativeLanguage: string; targetLanguage: string; proficiencyLevel: string; learningGoals: string[] };
   Home: NavigatorScreenParams<HomeTabsParamList> | undefined;
   Profile: undefined;
+  Pricing: undefined;
   AnalysisResult: {
     imageUri: string;
     detectedObjectBase: string;
@@ -24,6 +35,7 @@ export type RootStackParamList = {
     detectedObjectTargetPinyin?: string;
     contextSentence: string;
     contextSentencePinyin?: string;
+    contextFoundPhrase?: string; // Phrase found on the picture in base language
     examplePhrases: Array<{
       base: string;
       target: string;
@@ -42,10 +54,15 @@ export const routes: {
 }[] = [
   { name: "Login", component: LoginScreen },
   { name: "SignUp", component: SignUpScreen },
+  { name: "OnboardingUsername", component: UsernameScreen },
   { name: "OnboardingNativeLanguage", component: NativeLanguageScreen },
   { name: "OnboardingTargetLanguage", component: TargetLanguageScreen },
+  { name: "OnboardingProficiency", component: ProficiencyScreen },
+  { name: "OnboardingGoals", component: GoalsScreen },
+  { name: "OnboardingInterests", component: InterestsScreen },
   { name: "Home", component: HomeScreen },
   { name: "Profile", component: ProfileScreen },
+  { name: "Pricing", component: PricingScreen },
   { name: "AnalysisResult", component: AnalysisResultScreen },
 ];
 

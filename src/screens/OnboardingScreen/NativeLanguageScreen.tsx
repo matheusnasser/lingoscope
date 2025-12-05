@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "../../navigation/AppNavigator";
+import { useAuth } from "../../context/AuthContext";
+import { supabase } from "../../config/supabase";
 
 type NativeLanguageScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -32,16 +34,38 @@ const LANGUAGES = [
 
 export default function NativeLanguageScreen() {
   const navigation = useNavigation<NativeLanguageScreenNavigationProp>();
+  const { session } = useAuth();
   const [selectedLanguage, setSelectedLanguage] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (!selectedLanguage) {
       return;
     }
-    // Navigate to target language screen with native language
-    navigation.navigate("OnboardingTargetLanguage", {
-      nativeLanguage: selectedLanguage,
-    });
+
+    if (!session?.user?.id) {
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // Save native language
+      await supabase
+        .from("user_profiles")
+        .update({
+          native_language: selectedLanguage,
+        })
+        .eq("id", session.user.id);
+
+      // Navigate to target language screen with native language
+      navigation.navigate("OnboardingTargetLanguage", {
+        nativeLanguage: selectedLanguage,
+      } as any);
+    } catch (error) {
+      console.error("Error saving native language:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const LanguageButton = ({
@@ -110,11 +134,13 @@ export default function NativeLanguageScreen() {
           <View className="px-6 py-4">
             <TouchableOpacity
               onPress={handleContinue}
-              disabled={!selectedLanguage}
+              disabled={!selectedLanguage || loading}
               className="bg-vibrantCoral rounded-xl px-6 py-5 items-center shadow-lg"
-              style={{ opacity: !selectedLanguage ? 0.7 : 1 }}
+              style={{ opacity: !selectedLanguage || loading ? 0.7 : 1 }}
             >
-              <Text className="text-white text-lg font-bold">Continue</Text>
+              <Text className="text-white text-lg font-bold">
+                {loading ? "Saving..." : "Continue"}
+              </Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>

@@ -1,0 +1,123 @@
+{
+  "common": {
+    "continue": "Continue",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "auth": {
+    "login": "Sign In",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "username": "Username",
+    "forgotPassword": "Forgot Password?",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "signInWithGoogle": "Sign in with Google",
+    "signUpWithGoogle": "Sign up with Google",
+    "signInWithApple": "Sign in with Apple",
+    "signUpWithApple": "Sign up with Apple"
+  },
+  "onboarding": {
+    "welcome": "Welcome to Lingoscope!",
+    "chooseUsername": "Let's start by choosing your username",
+    "usernamePlaceholder": "Choose a username",
+    "usernameHint": "This will be your display name. You can change it later.",
+    "nativeLanguage": "What is your native language?",
+    "targetLanguage": "What language do you want to learn?",
+    "proficiencyLevel": "What's your level?",
+    "proficiencyDescription": "Help us personalize your learning experience",
+    "goals": "What are your goals?",
+    "goalsDescription": "Select all that apply (optional)",
+    "interests": "What interests you?",
+    "interestsDescription": "Select topics you'd like to learn about (optional)",
+    "completeSetup": "Complete Setup"
+  },
+  "home": {
+    "lingodex": "Lingodex",
+    "itemsCollected": "{{count}} {{count, plural, one {item} other {items}}} collected",
+    "feed": "Feed",
+    "challenges": "Challenges",
+    "camera": "Camera",
+    "profile": "Profile"
+  },
+  "challenges": {
+    "title": "{{count}}-Day Photo Challenge",
+    "completed": "{{completed}} of {{total}} completed",
+    "upgradePrompt": "Upgrade to unlock 10 daily challenges →",
+    "day": "Day {{number}}",
+    "capturePhoto": "Capture Photo",
+    "completed": "Completed ✓"
+  },
+  "analysis": {
+    "title": "Analysis Result",
+    "subtitle": "Here's what we found in your image",
+    "detectedObject": "Detected Object",
+    "examplePhrases": "Example Phrases",
+    "unlockExamplePhrases": "Unlock Example Phrases",
+    "unlockDescription": "Upgrade to Premium to see example phrases and accelerate your learning!",
+    "viewPlans": "View Plans",
+    "captureAnother": "Capture Another Image"
+  },
+  "profile": {
+    "title": "Profile",
+    "subscription": "Subscription",
+    "free": "Free",
+    "premium": "Premium",
+    "upgradeToPremium": "Upgrade to Premium",
+    "languagePreferences": "Language Preferences",
+    "nativeLanguage": "Native Language",
+    "learning": "Learning",
+    "posts": "Posts",
+    "settings": "Settings",
+    "editProfile": "Edit Profile",
+    "helpSupport": "Help & Support",
+    "signOut": "Sign Out"
+  },
+  "pricing": {
+    "title": "Choose Your Plan",
+    "subtitle": "Unlock more features to accelerate your learning",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "savePercent": "Save 17%",
+    "free": "Free",
+    "freeDescription": "Perfect for getting started",
+    "premium": "Premium",
+    "premiumDescription": "Unlock your full learning potential",
+    "perMonth": "/month",
+    "perYear": "/year",
+    "currentPlan": "Current Plan",
+    "continueWithFree": "Continue with Free",
+    "subscribeToPremium": "Subscribe to Premium",
+    "features": {
+      "dailyChallenges": "{{count}} daily challenges",
+      "unlimitedCaptures": "Unlimited captures",
+      "examplePhrases": "Example phrases",
+      "prioritySupport": "Priority support"
+    }
+  },
+  "search": {
+    "placeholder": "Search your collection...",
+    "noResults": "No results found"
+  },
+  "empty": {
+    "noPosts": "No posts yet.\nCapture your first image to get started!",
+    "noItems": "No items captured yet.\nCapture your first image to start your collection!",
+    "loadingCollection": "Loading collection...",
+    "loadingChallenges": "Loading challenges..."
+  }
+}
+
+
+
+
+
+
+

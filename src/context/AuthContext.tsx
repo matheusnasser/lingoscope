@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Session } from '@supabase/supabase-js';
 import { authService } from '../services/auth';
 import { userService } from '../services/user';
+import { srsService } from '../services/srs/srsService';
 
 interface AuthContextType {
   session: Session | null;
@@ -32,6 +33,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setSession(session);
       if (session?.user?.id) {
         await checkOnboardingStatus(session.user.id);
+        // Auto-generate reviews for existing posts when user joins the app
+        // This ensures all captured photos have review items
+        try {
+          await srsService.createReviewItemsFromExistingPosts(session.user.id);
+        } catch (error) {
+          console.error('Error auto-generating reviews:', error);
+          // Don't block app initialization if this fails
+        }
       } else {
         setOnboardingCompleted(null);
       }
@@ -45,6 +54,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setSession(session);
       if (session?.user?.id) {
         await checkOnboardingStatus(session.user.id);
+        // Auto-generate reviews for existing posts when user logs in
+        try {
+          await srsService.createReviewItemsFromExistingPosts(session.user.id);
+        } catch (error) {
+          console.error('Error auto-generating reviews:', error);
+          // Don't block app initialization if this fails
+        }
       } else {
         setOnboardingCompleted(null);
       }

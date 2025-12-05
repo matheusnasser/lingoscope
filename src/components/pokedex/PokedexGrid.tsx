@@ -9,7 +9,8 @@ interface PokedexGridProps {
 const { width } = Dimensions.get("window");
 const GAP = 12;
 const COLUMNS = 2;
-const CARD_WIDTH = (width - GAP * (COLUMNS + 1) - 48) / COLUMNS; // 48 = padding (24 * 2)
+const PADDING = 24;
+const CARD_WIDTH = (width - GAP * (COLUMNS - 1) - PADDING * 2) / COLUMNS;
 
 export default function PokedexGrid({ items }: PokedexGridProps) {
   if (items.length === 0) {
@@ -26,16 +27,16 @@ export default function PokedexGrid({ items }: PokedexGridProps) {
     <FlatList
       data={items}
       renderItem={({ item, index }) => (
-        <View style={{ width: CARD_WIDTH, marginBottom: GAP }}>
+        <View style={{ width: CARD_WIDTH }}>
           <PokedexCard item={item} index={index} />
         </View>
       )}
       keyExtractor={(item) => item.id || item.path}
       numColumns={COLUMNS}
       columnWrapperStyle={{ 
-        gap: GAP, 
-        paddingHorizontal: 24,
-        justifyContent: 'flex-start',
+        paddingHorizontal: PADDING,
+        justifyContent: 'space-between',
+        marginBottom: GAP,
       }}
       contentContainerStyle={{ 
         paddingBottom: 20, 

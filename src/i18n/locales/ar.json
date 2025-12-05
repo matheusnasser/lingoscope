@@ -1,0 +1,123 @@
+{
+  "common": {
+    "continue": "متابعة",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "back": "رجوع",
+    "next": "التالي",
+    "done": "تم",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "username": "اسم المستخدم",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟",
+    "dontHaveAccount": "ليس لديك حساب؟",
+    "signInWithGoogle": "تسجيل الدخول مع Google",
+    "signUpWithGoogle": "إنشاء حساب مع Google",
+    "signInWithApple": "تسجيل الدخول مع Apple",
+    "signUpWithApple": "إنشاء حساب مع Apple"
+  },
+  "onboarding": {
+    "welcome": "مرحباً بك في Lingoscope!",
+    "chooseUsername": "لنبدأ باختيار اسم المستخدم الخاص بك",
+    "usernamePlaceholder": "اختر اسم مستخدم",
+    "usernameHint": "سيكون هذا اسم العرض الخاص بك. يمكنك تغييره لاحقاً.",
+    "nativeLanguage": "ما هي لغتك الأم؟",
+    "targetLanguage": "ما اللغة التي تريد تعلمها؟",
+    "proficiencyLevel": "ما هو مستواك؟",
+    "proficiencyDescription": "ساعدنا في تخصيص تجربة التعلم الخاصة بك",
+    "goals": "ما هي أهدافك؟",
+    "goalsDescription": "اختر كل ما ينطبق (اختياري)",
+    "interests": "ما الذي يثير اهتمامك؟",
+    "interestsDescription": "اختر المواضيع التي ترغب في التعلم عنها (اختياري)",
+    "completeSetup": "إكمال الإعداد"
+  },
+  "home": {
+    "lingodex": "Lingodex",
+    "itemsCollected": "{{count}} {{count, plural, one {عنصر} other {عناصر}}} تم جمعها",
+    "feed": "الخلاصة",
+    "challenges": "التحديات",
+    "camera": "الكاميرا",
+    "profile": "الملف الشخصي"
+  },
+  "challenges": {
+    "title": "تحدي الصور لمدة {{count}} أيام",
+    "completed": "{{completed}} من {{total}} مكتملة",
+    "upgradePrompt": "قم بالترقية لإلغاء قفل 10 تحديات يومية →",
+    "day": "اليوم {{number}}",
+    "capturePhoto": "التقاط صورة",
+    "completed": "مكتمل ✓"
+  },
+  "analysis": {
+    "title": "نتيجة التحليل",
+    "subtitle": "إليك ما وجدناه في صورتك",
+    "detectedObject": "الكائن المكتشف",
+    "examplePhrases": "عبارات مثال",
+    "unlockExamplePhrases": "إلغاء قفل العبارات المثال",
+    "unlockDescription": "قم بالترقية إلى Premium لمشاهدة عبارات المثال وتسريع تعلمك!",
+    "viewPlans": "عرض الخطط",
+    "captureAnother": "التقاط صورة أخرى"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "subscription": "الاشتراك",
+    "free": "مجاني",
+    "premium": "مميز",
+    "upgradeToPremium": "الترقية إلى Premium",
+    "languagePreferences": "تفضيلات اللغة",
+    "nativeLanguage": "اللغة الأم",
+    "learning": "التعلم",
+    "posts": "المنشورات",
+    "settings": "الإعدادات",
+    "editProfile": "تعديل الملف الشخصي",
+    "helpSupport": "المساعدة والدعم",
+    "signOut": "تسجيل الخروج"
+  },
+  "pricing": {
+    "title": "اختر خطتك",
+    "subtitle": "قم بإلغاء قفل المزيد من الميزات لتسريع تعلمك",
+    "monthly": "شهري",
+    "yearly": "سنوي",
+    "savePercent": "وفر 17%",
+    "free": "مجاني",
+    "freeDescription": "مثالي للبدء",
+    "premium": "مميز",
+    "premiumDescription": "ألغِ قفل إمكانات التعلم الكاملة لديك",
+    "perMonth": "/شهر",
+    "perYear": "/سنة",
+    "currentPlan": "الخطة الحالية",
+    "continueWithFree": "المتابعة مع المجاني",
+    "subscribeToPremium": "الاشتراك في Premium",
+    "features": {
+      "dailyChallenges": "{{count}} تحديات يومية",
+      "unlimitedCaptures": "التقاطات غير محدودة",
+      "examplePhrases": "عبارات مثال",
+      "prioritySupport": "دعم ذو أولوية"
+    }
+  },
+  "search": {
+    "placeholder": "ابحث في مجموعتك...",
+    "noResults": "لم يتم العثور على نتائج"
+  },
+  "empty": {
+    "noPosts": "لا توجد منشورات بعد.\nالتقط صورتك الأولى للبدء!",
+    "noItems": "لم يتم التقاط أي عناصر بعد.\nالتقط صورتك الأولى لبدء مجموعتك!",
+    "loadingCollection": "جاري تحميل المجموعة...",
+    "loadingChallenges": "جاري تحميل التحديات..."
+  }
+}
+
+
+
+
+
+
+

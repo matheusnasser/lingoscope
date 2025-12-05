@@ -11,6 +11,7 @@ export interface CapturedImage {
   detected_object_target_pinyin?: string; // Pinyin for detected object in target language
   context_sentence?: string;
   context_sentence_pinyin?: string; // Pinyin for context sentence
+  context_found_phrase?: string; // Phrase found on the picture in base language
   example_phrases?: Array<{
     base: string;
     target: string;
@@ -70,6 +71,7 @@ class StorageService {
         .from("user_posts")
         .select("*")
         .eq("user_id", userId)
+        .eq("is_deleted", false)
         .order("created_at", { ascending: false })
         .limit(100);
 
@@ -103,6 +105,8 @@ class StorageService {
           context_sentence: aiData.contextSentence || aiData.context_sentence,
           context_sentence_pinyin:
             aiData.contextSentencePinyin || aiData.context_sentence_pinyin,
+          context_found_phrase:
+            aiData.contextFoundPhrase || aiData.context_found_phrase,
           example_phrases:
             aiData.examplePhrases || aiData.example_phrases || [],
           pinyin:
@@ -126,6 +130,7 @@ class StorageService {
         .from("user_posts")
         .select("*")
         .eq("id", postId)
+        .eq("is_deleted", false)
         .single();
 
       if (error) {
@@ -157,6 +162,8 @@ class StorageService {
         context_sentence: aiData.contextSentence || aiData.context_sentence,
         context_sentence_pinyin:
           aiData.contextSentencePinyin || aiData.context_sentence_pinyin,
+        context_found_phrase:
+          aiData.contextFoundPhrase || aiData.context_found_phrase,
         example_phrases: aiData.examplePhrases || aiData.example_phrases || [],
         pinyin:
           aiData.pinyin ||

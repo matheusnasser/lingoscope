@@ -12,6 +12,7 @@ export interface AnalyzeImageBackendResponse {
   detectedObjectTargetPinyin?: string; // Pinyin for detected object in target language
   contextSentence: string;
   contextSentencePinyin?: string; // Pinyin for context sentence
+  contextFoundPhrase?: string; // Phrase found on the picture in base language
   examplePhrases: Array<{ base: string; target: string; targetPinyin?: string }>;
   storagePath: string;
   pinyin?: string; // Optional pinyin for Chinese characters (legacy, use detectedObjectTargetPinyin)
